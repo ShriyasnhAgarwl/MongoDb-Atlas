@@ -1,4 +1,4 @@
-##Basic MongoDB Operations in Python
+#### Basic MongoDB Operations in Python #####
 
 --Prerequisites
 
@@ -172,3 +172,71 @@ After running above code:::
 'year': 1893}
 
    
+   
+   
+ BSON : MongoDB stores data in binary format called BSON, which also incluides the ObjectID type as well as native types for decimal numbers, binary data and timestamps.
+ 
+ 
+ 
+######Creating a documebt in a collection####
+
+working on the "movies"
+
+# Insert a document for the movie 'Parasite':
+insert_result = movies.insert_one({
+      "title": "Parasite",
+      "year": 2020,
+      "plot": "A poor family, the Kims, con their way into becoming the servants of a rich family, the Parks. "
+      "But their easy life gets complicated when their deception is threatened with exposure.",
+      "released": datetime(2020, 2, 7, 0, 0, 0),
+   })
+
+# Save the inserted_id of the document you just created:
+parasite_id = insert_result.inserted_id
+print("_id of inserted document: {parasite_id}".format(parasite_id=parasite_id))
+
+
+
+
+######Reading documents from a collection####
+
+import bson # <- Put this line near the start of the file if you prefer.
+
+# Look up the document you just created in the collection:
+print(movies.find_one({'_id': bson.ObjectId(parasite_id)}))
+
+
+
+# Look up the documents you've created in the collection:
+for doc in movies.find({"title": "Parasite"}):
+   pprint(doc)
+   
+   
+   
+########Update documents in a collection:#######
+
+# Update the document with the correct year:
+update_result = movies.update_one({ '_id': parasite_id }, {
+   '$set': {"year": 2019}
+})
+
+# Print out the updated record to make sure it's correct:
+pprint(movies.find_one({'_id': ObjectId(parasite_id)}))
+
+
+***Another***
+
+# Update *all* the Parasite movie docs to the correct year:
+update_result = movies.update_many({"title": "Parasite"}, {"$set": {"year": 2019}})
+
+
+#### Delete documents from the collection ###
+
+movies.delete_many(
+   {"title": "Parasite",}
+)
+
+
+
+
+
