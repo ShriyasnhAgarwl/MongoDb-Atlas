@@ -8,9 +8,9 @@
 - Step 6- Inserting a document into your cluster using supported MongoDB drivers
 - Step 7- Loading Sample Data into the Atlas Cluster
 
-##Creating and Connecting to database deployments
+## Creating and Connecting to database deployments
 
-1 Choosing a deployment type
-2 Creating the Database Deployment
-3 Connecting to the Database Deployment 
+- 1 Choosing a deployment type
+- 2 Creating the Database Deployment
+- 3 Connecting to the Database Deployment 
  
