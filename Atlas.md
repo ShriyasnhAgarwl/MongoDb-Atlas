@@ -1,4 +1,4 @@
-##Getting Started
+## Getting Started
 
 Step 1 - Creating an account with Google account or email address
 Step 2 -Deploying a free cluster as a small scale development environment to host the data
